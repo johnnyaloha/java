@@ -1,0 +1,34 @@
+//AUTHOR: johnnyaloha
+//DATE: 9/2015
+
+import java.util.Scanner;
+public class TestPainting
+{
+	public static void main(String[] args)
+	{
+		Scanner scan = new Scanner(System.in);
+		Painting userPaintingOne = new Painting();
+		System.out.println(userPaintingOne.toString());
+		
+		Painting userPaintingTwo = new Painting();
+		
+		System.out.println("Enter the painting title: ");
+		String userInput = scan.nextLine();
+		userPaintingTwo.setTitle(userInput);
+		
+		System.out.println("Enter the painting artist: ");
+		userInput = scan.nextLine();
+		userPaintingTwo.setArtistName(userInput);
+		
+		System.out.println("Enter the estimated price: ");
+		userInput = scan.nextLine();
+		userPaintingTwo.setEstPrice(Double.parseDouble(userInput));
+		
+		System.out.println("Enter the medium: ");
+		userInput = scan.nextLine();
+		userPaintingTwo.setMedium(userInput);
+		
+		System.out.println(userPaintingTwo.toString());
+		scan.close();
+	}
+}
