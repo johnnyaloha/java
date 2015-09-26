@@ -1,0 +1,72 @@
+//AUTHOR: johnnyaloha
+//DATE: 9/2015
+public class Painting
+{
+   private String title;
+   private String artistName;
+   private String medium;
+   private double estPrice;
+   private double galleryCommission;
+   
+   public Painting()
+   {
+      title = "Title not assigned";
+      artistName = "Artist name not assigned";
+      medium = "Medium not assigned";
+   }
+
+   public String toString()
+   {
+	   return title + "\n" + 
+			   artistName + "\n" +
+			   medium + "\n" +
+			   estPrice + "\n" +
+			   galleryCommission + "\n";
+   }
+
+	public String getTitle()
+	{
+		return title;
+	}
+
+	public void setTitle(String pTitle)
+	{
+		title = pTitle;
+	}
+	
+	public String getArtistName()
+	{
+		return artistName;
+	}
+	
+	public void setArtistName(String pArtistName)
+	{
+		artistName = pArtistName;
+	}
+	
+	public String getMedium()
+	{
+		return medium;
+	}
+	
+	public void setMedium(String pMedium)
+	{
+		medium = pMedium;
+	}
+	
+	public double getEstPrice()
+	{
+		return estPrice;
+	}
+	
+	public void setEstPrice(double pEstPrice)
+	{
+	   estPrice = pEstPrice;
+		galleryCommission = .2 * estPrice;
+	}
+	
+	public double getGalleryCommission()
+	{
+		return galleryCommission;
+	}  
+}
