@@ -1,0 +1,41 @@
+public class GradeExams 
+{
+	public static void main(String[] args) 
+	{
+		char [] correctAnswers = 
+			{
+				'A', 'C', 'B', 'A', 'D',
+				'B', 'D', 'C', 'C', 'D'
+			};
+      //change the array below to make responses correct or incorrect
+		char [] answers = 
+			{
+				'A', 'E', 'B', 'A', 'D',
+				'D', 'D', 'B', 'C', 'D'
+			};
+		MCChecker quiz1 = new MCChecker(correctAnswers, answers);
+		System.out.println("The number correct is " + quiz1.numberCorrect());
+		System.out.println("The number incorrect is " + quiz1.numberIncorrect());
+		System.out.println("The student passed? " + quiz1.isPassingGrade());
+		
+		System.out.print("\nResults by Question\n");
+		int [] whichOnes = new int[10];
+		whichOnes = quiz1.problemsMissed();
+		if (whichOnes != null)
+		{
+			int questionNumber = 1;
+			
+			for (int answer : whichOnes)
+			{
+				if (answer == 0)
+					System.out.print(questionNumber++ + ": incorrect ");
+				else
+					System.out.print(questionNumber++ + ": correct ");
+			}
+		}
+		else //the array has invalid data
+		{
+			System.out.println("Either the answer key or the exam was of the wrong size.");
+		}
+	}
+}
