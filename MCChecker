@@ -1,0 +1,97 @@
+/*
+PURPOSE:    Compare an answer key to exam responses to determine
+            the number of questions answered correctly, which
+            specific questions were answered correctly and incorrectly,
+            and whether the exam was passed.
+*/
+public class MCChecker 
+{
+	public final static int EXAM_LENGTH = 10;
+	public final static double PASSING_MARK = .7;
+	private char [] answerKey; //correct answers
+	private char [] examAnswers;//answers supplied by exam taker
+	
+/*
+PURPOSE:    construct MCChecker object. The answer key is supplied as argument. In 
+            addition, the responses to be graded are supplied as an argument.
+ARGUMENTS:  Two character arrays containing the answer key and the exam responses.
+RETURN:     N/A
+*/
+	public MCChecker(char [] ak, char [] ea)
+	{
+		//NOTE: If the parameter arrays are not the correct sizes, the code below doesn't run
+		//and the class arrays will have a value of null. This value is checked in class
+		//methods to determine if the class arrays are valid.
+		if (ak.length == EXAM_LENGTH && ea.length == EXAM_LENGTH)
+		{
+			answerKey = new char[EXAM_LENGTH];
+			examAnswers = new char [EXAM_LENGTH];
+			for (int idx = 0; idx < EXAM_LENGTH; idx++)
+			{
+				answerKey[idx] = ak[idx];
+				examAnswers[idx] = ea[idx];
+			}
+		}
+	}
+
+/*
+PURPOSE:    return true if exam was passed else false.
+*/
+	public boolean isPassingGrade()
+	{
+		if (answerKey == null)//answer key had error
+			return false;
+      else
+		   return (double)numberCorrect() / (double)EXAM_LENGTH >= PASSING_MARK;
+	}
+/*
+RETURN:     int with a number for how many questions were answered correctly.
+            -1 will be returned if an error occurs.
+*/   
+	public int numberCorrect()
+	{
+		int numberCorrect = 0;
+		
+		if (answerKey == null)//answer key had error
+			return -1;
+		
+		for (int idx = 0; idx < EXAM_LENGTH; idx++)
+		{
+			if (answerKey[idx] == examAnswers[idx])
+				numberCorrect++;
+		}
+		return numberCorrect;
+	}
+/*
+RETURN:     int with a number for how many questions were answered incorrectly.
+            -1 will be returned if an error occurs.
+*/  
+	public int numberIncorrect()
+	{
+		if (answerKey == null)//answer key had error
+			return -1;
+		else
+			return EXAM_LENGTH - numberCorrect();
+	}
+   
+/*
+RETURN:     int array with each element either 0 (answered incorrectly) or  
+            1 (answered correctly). The question number is 0 based - element
+            0 contains the data for question 1.       
+*/
+	public int[] problemsMissed()
+	{
+		if (answerKey == null)//answer key had error
+			return null;
+		
+		int [] missed = new int[EXAM_LENGTH];
+		for (int idx = 0; idx < EXAM_LENGTH; idx++)
+		{
+			if (answerKey[idx] == examAnswers[idx])
+				//array initialized to all 0s so if answer is correct
+				//make element be 1 indicating correct answer
+				missed[idx] ++;
+		}
+		return missed;
+	}
+}
